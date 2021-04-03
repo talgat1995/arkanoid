@@ -1,0 +1,67 @@
+body {
+  background-color: black;
+}
+.menu-bar {
+  margin: 0 auto;
+  position: relative;
+  width: 59vmin;
+  background-color: yellow;
+  border: 0.5vmin solid black;
+  padding: 0.5vmin;
+  text-align: center;
+  border: 0.2vmin solid red;
+}
+.field {
+  margin: 0 auto;
+  width: 60vmin;
+  height: 70vmin;
+  background: black;
+  position: relative;
+  border: 0.2vmin solid red;
+
+}
+.row {
+  display: flex;
+  width: 100%;
+}
+.plate-row {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.block {
+  background: yellowgreen;
+  height: 2vmin;
+  width: 2vmin;
+  border-radius: 2px;
+  border: 1vmin double black;
+}
+.hidden {
+  visibility: hidden;
+}
+.plate {
+  background: darkred;
+  color: white;
+  height: 2.5vmin;
+  width: 14vmin;
+  border: 0.2vmin solid black;
+  border-radius: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 24.5vmin;
+}
+.ball {
+  width: 3vmin;
+  height: 3vmin;
+  border-radius: 50%;
+  background-color: aqua;
+  position: absolute;
+  border: 0.5vmin solid black;
+  bottom: 3.5vmin;
+  left: 29vmin;
+}
+
+
+
+
