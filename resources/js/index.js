@@ -15,44 +15,69 @@ var field;
 var ball;
 var plate;
 var score;
-const FRAMES_PER_SECOND = 30;
+var restartB;
+var startTime;
+var duration = 1000; // 1 second or 1000ms
+var distance = 60; // 60FPS
+var fromPause = true;
 
-
-function moveBall(time) {
-	this.ballY += 0.5*this.ballVectorY;
+function moveBall(timestamp) {
+	this.ballY += 0.25*this.ballVectorY;
 	ball.style.bottom = this.ballY + "vmin";
-	this.ballX -= 0.75*this.ballVectorX;
+	this.ballX -= 0.35*this.ballVectorX;
 	ball.style.left = this.ballX + "vmin";
 	hitCheck();
-	cancelAnimationFrame(id)
-	id = requestAnimationFrame(moveBall)
+	startTime = startTime || timestamp; // set startTime is null
+
+	var timeElapsedSinceStart = timestamp - startTime;
+	var progress = timeElapsedSinceStart / 1000;
+
+	var safeProgress = Math.min( progress.toFixed(2), 1 ); // 2 decimal points
+
+	var newPosition = safeProgress * distance;
+
+
+
+	if( safeProgress >= 1 || fromPause === true){
+		id = requestAnimationFrame(moveBall);
+	}
 }
 
 function mainEventTrigger(event) {
 	if (!gameNeedsRestart) {
 		if (gameStarted) {
-			event.innerHTML = "start";
+			event.innerHTML = "Continue";
 			gameStarted = false;
 			pauseGame();
 		} else {
-			event.innerHTML = "pause";
-			gameStart();
+			event.innerHTML = "Pause";
+			gameStart()
+				restartB.style.display = "none"
 			gameStarted = true;
 		}
-	} else {
-		location.reload();
 	}
+
+
 }
+
 
 function gameStart() {
 	// this.moveBallTimeout = setInterval(moveBall, 20);
 	window.addEventListener('keydown', onKeyDown, true);
+	fromPause = true;
 	id = requestAnimationFrame(moveBall)
+}
+
+function restart(event) {
+	location.reload()
 }
 
 function pauseGame() {
 	// clearInterval(this.moveBallTimeout);
 	console.log(id)
+	if (restartB.style.display === "none") {
+		restartB.style.display = "block"
+	}
 	window.removeEventListener('keydown', onKeyDown, true);
 	cancelAnimationFrame(id)
 }
@@ -61,7 +86,7 @@ function stopGame() {
 	gameStarted = false;
 	gameNeedsRestart = true;
 	pauseGame();
-	document.getElementById("gameButton").innerHTML = "restart";
+	document.getElementById("gameButton").style.visibility = "hidden"
 }
 
 function changeDir(brick = null) {
@@ -197,6 +222,7 @@ function onLoad() {
 	this.ball = document.getElementsByClassName("ball")[0];
 	this.plate = document.getElementsByClassName("plate")[0];
 	this.score = document.getElementById("score");
-
+	this.restartB = document.getElementById("restartButton")
+	restartB.style.display = "none"
 	renderBlocks();
 }

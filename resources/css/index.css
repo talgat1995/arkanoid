@@ -62,6 +62,23 @@ body {
   left: 29vmin;
 }
 
+#score{
+  margin: 0 auto;
+  position: relative;
+  width: 15vmin;
+  background-color: yellow;
+  border: 0.5vmin solid black;
+  padding: 0.5vmin;
+  text-align: center;
+}
 
-
+#outer
+{
+  width:100%;
+  text-align: left;
+}
+.inner
+{
+  display: inline-block;
+}
 

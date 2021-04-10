@@ -8,8 +8,11 @@
     </head>
     <body onload="onLoad()">
         <div class="menu-bar">
-            <button id="gameButton" onclick="mainEventTrigger(this)">start</button>
-            score: 
+            <div id="outer">
+                <div class="inner"><button id="gameButton" onclick="mainEventTrigger(this)">Start</button></div>
+                <div class="inner"> <button id="restartButton" onclick="restart(this)">Restart</button></div>
+            </div>
+            <br>Score:
             <div id="score">0</div>
         </div>
         <div class="field">
@@ -19,5 +22,7 @@
             </div>
             <div class="ball"/>
         </div>
+        <br>
     </body>
 </html>
+
